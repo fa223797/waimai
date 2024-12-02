@@ -1,0 +1,7 @@
+{
+    "navigationBarTitleText": "帮助中心",
+    "usingComponents": {
+        "cardlist": "/zh_cjdianc/dist/cardlist/index",
+        "gettel": "/zh_cjdianc/dist/gettel/index"
+    }
+}
