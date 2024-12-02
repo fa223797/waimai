@@ -1,0 +1,45 @@
+<view class="main">
+    <view class="tjsj">
+        <view bindtap="tzsjxq" class="sjlb flex-row {{item.is_yy==2&&mdxx.isyykg==1?'bszz':''}}" data-sjid="{{item.store_id}}" wx:for="{{storelist}}" wx:key="*this">
+            <view class="sjleft flex-grow-0">
+                <image class="sjleftimg" src="{{item.logo}}"></image>
+                <view class="xzhiding" wx:if="{{item.is_brand=='1'}}">
+          品牌
+        </view>
+            </view>
+            <view class="sjright flex-grow-1 flex-col">
+                <view class="sjright1 flex-row flex-y-center">
+                    <view class="sjright1-l gobyndsingle">{{item.name}}</view>
+                    <view class="isyy" wx:if="{{item.is_yy==2&&mdxx.isyykg==1}}">休息中</view>
+                </view>
+                <view class="sjright2 flex-bet flex-y-center">
+                    <view class="flex-row flex-grow-1 flex-y-center">
+                        <view class="pingjia_fenshu3">
+                            <view class="kximg">
+                                <image src="../../img/i-star.png"></image>
+                            </view>
+                            <view class="sximg" style="width: {{item.sales*20}}%">
+                                <image src="../../img/i-stars.png"></image>
+                            </view>
+                        </view>
+                        <view class="pingfen">{{item.sales}}</view>
+                        <view class="recommed_midel">月售{{item.score}}单</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="jzz" hidden="{{mygd}}">
+            <image class="Rotation" src="../../img/jzz.png"></image>
+            <view>加载中...</view>
+        </view>
+        <view class="kong" wx:if="{{storelist.length==0&&mygd}}">
+            <image src="../../img/wushuju.png"></image>
+            <view>暂无相关数据</view>
+        </view>
+        <view class="jzwb" wx:if="{{mygd}}">
+            <view class="hx"></view>
+            <view class="wz">加载完毕</view>
+            <view class="hx"></view>
+        </view>
+    </view>
+</view>

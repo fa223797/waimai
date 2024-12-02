@@ -1,0 +1,65 @@
+@import "../../../chungetdWxss/2.wxss";
+
+.shop_list {
+    width: 100%;
+    height: auto;
+    background: #fff;
+}
+
+.shop_list:last-child {
+    border: none;
+}
+
+.shop_list>view {
+    height: 100%;
+}
+
+.shop_list image {
+    width: 100%;
+    height: 100%;
+}
+
+.shop_list>view:nth-child(1) {
+    width: 100%;
+    height: 300rpx;
+}
+
+.shop_list>view:nth-child(2) {
+    width: 100%;
+}
+
+.shop_name {
+    height: 80rpx;
+    line-height: 80rpx;
+}
+
+.shop_info {
+    height: 60rpx;
+    color: red;
+}
+
+.shop_list>view text:nth-child(1) {
+    color: red;
+}
+
+.right_group {
+    width: 300rpx;
+    height: 60rpx;
+    float: right;
+    margin-bottom: 20rpx;
+    border-radius: 9rpx;
+    overflow: hidden;
+}
+
+.right_group>view {
+    width: 50%;
+    height: 100%;
+    line-height: 60rpx;
+}
+
+.right_group>view image {
+    width: 30rpx;
+    height: 30rpx;
+    margin-right: 10rpx;
+    margin-left: 10rpx;
+}

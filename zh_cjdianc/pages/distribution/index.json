@@ -1,0 +1,7 @@
+{
+    "navigationBarTitleText": "邀请好友，各抢红包",
+    "usingComponents": {
+        "cardlist": "/zh_cjdianc/dist/cardlist/index",
+        "gettel": "/zh_cjdianc/dist/gettel/index"
+    }
+}

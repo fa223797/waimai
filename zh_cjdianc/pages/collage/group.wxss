@@ -1,0 +1,94 @@
+@import "../../../chungetdWxss/2.wxss";
+
+.head {
+    width: 100%;
+    height: 450rpx;
+}
+
+.head swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.head image {
+    width: 100%;
+    height: 100%;
+}
+
+.nav_li {
+    width: 20%;
+    height: auto;
+}
+
+.nav_li image {
+    width: 70rpx;
+    height: 70rpx;
+    display: block;
+    margin: 20rpx auto;
+}
+
+.shop_list {
+    width: 100%;
+    height: 200rpx;
+    background: #fff;
+    box-sizing: content-box;
+}
+
+.shop_list:last-child {
+    border: none;
+}
+
+.shop_list>view {
+    height: 100%;
+}
+
+.shop_list image {
+    width: 100%;
+    height: 100%;
+}
+
+.shop_list>view:nth-child(1) {
+    width: 30%;
+}
+
+.shop_list>view:nth-child(2) {
+    width: 61%;
+    margin-left: 4%;
+}
+
+.shop_list>view view:nth-child(1) {
+    height: auto;
+    min-height: 50rpx;
+}
+
+.shop_list>view view:nth-child(2) {
+    height: auto;
+    min-height: 50rpx;
+}
+
+.shop_list>view view:nth-child(3) {
+    height: 40rpx;
+    line-height: 40rpx;
+    margin-top: 40rpx;
+}
+
+.shop_list>view text:nth-child(2) {
+    margin-right: 10rpx;
+    color: red;
+}
+
+.shop_list>view text:nth-child(1) {
+    color: red;
+}
+
+.mdtp {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.mdtp image {
+    width: 30rpx;
+    height: 30rpx;
+    margin-right: 10rpx;
+}
