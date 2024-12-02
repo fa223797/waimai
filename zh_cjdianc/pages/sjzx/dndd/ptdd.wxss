@@ -1,0 +1,5 @@
+@import "dnddlb.wxss";
+
+.main {
+    padding-top: 100rpx;
+}
