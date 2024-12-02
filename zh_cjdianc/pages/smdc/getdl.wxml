@@ -1,0 +1,11 @@
+<view bindtap="yczz" class="sq_screen"></view>
+<view class="sq_box">
+    <view class="sq_title">需要您的授权</view>
+    <view class="sq_title1">为了提供更好的服务</view>
+    <view class="sq_title1">请在稍后的提示框中点击“允许”</view>
+    <image src="../../img/sqimg.png"></image>
+    <view style="width:100%;display:flex;justify-content: space-around;align-items: center;">
+        <view bindtap="qx" class="btn_no">取消</view>
+        <button bindgetuserinfo="bindGetUserInfo" bindtap="yczz" class="btn_ok" openType="getUserInfo" style="background:{{color}}">确认</button>
+    </view>
+</view>
