@@ -1,0 +1,146 @@
+<include src="/zh_cjdianc/pages/commons/navbar/navbar.wxml"></include>
+<navigator class="return-index-btn" openType="redirect" url="/pages/index/index" wx:if="{{show_index}}">
+    <image src="/images/nav-icon-index.png" style="width: 50rpx;height: 50rpx"></image>
+</navigator>
+<view class="flex-row tab-bar">
+    <view class="flex-grow-1">
+        <navigator class="{{status==1?'active':''}}" openType="redirect" url="order?status=1">
+            <text style="color:{{status==1?color:''}};border-bottom:{{status==1?2:0}}rpx solid {{color}}">待核销</text>
+        </navigator>
+    </view>
+    <view class="flex-grow-1">
+        <navigator class="{{status==2?'active':''}}" openType="redirect" url="order?status=2">
+            <text style="color:{{status==2?color:''}};border-bottom:{{status==2?2:0}}rpx solid {{color}}">已核销</text>
+        </navigator>
+    </view>
+    <view class="flex-grow-1">
+        <navigator class="{{status==3?'active':''}}" openType="redirect" url="order?status=3">
+            <text style="color:{{status==3?color:''}};border-bottom:{{status==3?2:0}}rpx solid {{color}}">已失效</text>
+        </navigator>
+    </view>
+</view>
+<view class="order-list">
+    <view class="no-data-tip zwdd" wx:if="{{order_list.length==0&&mygd}}">
+        <image mode="aspectFit" src="../../img/list.png"></image>
+        <view>您暂无相关订单哦~</view>
+    </view>
+    <view class="order-item" wx:for="{{order_list}}" wx:for-item="oitem">
+        <navigator url="reserveinfo?oid={{oitem.order.id}}">
+            <view class="flex-row order-info">
+                <view class="flex-grow-1">订单号:{{oitem.order_num}}</view>
+                <view class="flex-grow-0" wx:if="{{oitem.order.type=='3'}}">{{System.yd_name}}订单</view>
+            </view>
+            <view class="flex-row zysp flex-y-center">
+                <image mode="aspectFill" src="{{oitem.store_logo}}"></image>
+                <view class="flex-grow-1 flex-col">
+                    <view class="mdname">
+              {{oitem.store_name}}
+            </view>
+                    <view class="mdtime">
+              下单时间：{{oitem.pay_time}}
+            </view>
+                </view>
+                <view class="flex-grow-0">
+                    <image src="../../img/blackjt.png" style="width:40rpx;height:40rpx;"></image>
+                </view>
+            </view>
+            <view class="goods-list">
+                <view class="goods-item flex-row">
+                    <view class="flex-grow-0 flex-row flex-y-center" style="overflow: visible">
+                        <image class="goods-pic" mode="aspectFill" src="{{oitem.good_logo}}"></image>
+                    </view>
+                    <view class="flex-grow-1 flex-col">
+                        <view class="flex-grow-1 flex-row flex-y-center">
+                            <view class="flex-grow-1">{{oitem.good_name}}
+                  <text style="margin-left:10rpx;" wx:if="{{oitem.num>1}}">等{{oitem.num}}件商品</text>
+                            </view>
+                            <view class="flex-grow-0 sfmoney">实付：￥{{oitem.money}}</view>
+                        </view>
+                    </view>
+                </view>
+                <view class="goods-item flex-row">
+                    <view class="flex-grow-0 flex-row flex-y-center" style="overflow: visible">
+                        <image class="goods-pic" mode="aspectFill" src=""></image>
+                    </view>
+                    <view class="flex-grow-1 flex-col">
+                        <view class="flex-grow-1 flex-row flex-y-center">
+                            <view class="flex-grow-1">支付方式：
+                </view>
+                            <view class="flex-grow-0" wx:if="{{oitem.pay_type==1}}">微信支付</view>
+                            <view class="flex-grow-0" wx:if="{{oitem.pay_type==2}}">余额支付</view>
+                        </view>
+                    </view>
+                </view>
+                <view class="goods-item flex-row">
+                    <view class="flex-grow-0 flex-row flex-y-center" style="overflow: visible">
+                        <image class="goods-pic" mode="aspectFill" src=""></image>
+                    </view>
+                    <view class="flex-grow-1 flex-col">
+                        <view class="flex-grow-1 flex-row flex-y-center">
+                            <view class="flex-grow-1">联系方式：
+                </view>
+                            <view class="flex-grow-0">{{oitem.user_name}}({{oitem.user_tel}})</view>
+                        </view>
+                    </view>
+                </view>
+                <view class="goods-item flex-row">
+                    <view class="flex-grow-0 flex-row flex-y-center" style="overflow: visible">
+                        <image class="goods-pic" mode="aspectFill" src=""></image>
+                    </view>
+                    <view class="flex-grow-1 flex-col">
+                        <view class="flex-grow-1 flex-row flex-y-center">
+                            <view class="flex-grow-1">到期时间：
+                </view>
+                            <view class="flex-grow-0">{{oitem.dq_time}}</view>
+                        </view>
+                    </view>
+                </view>
+                <view class="goods-item flex-row" wx:if="{{oitem.note!=''}}">
+                    <view class="flex-grow-0 flex-row flex-y-center" style="overflow: visible">
+                        <image class="goods-pic" mode="aspectFill" src=""></image>
+                    </view>
+                    <view class="flex-grow-1 flex-col">
+                        <view class="flex-grow-1 flex-row flex-y-center">
+                            <view class="flex-grow-0">留言备注：
+                </view>
+                            <view class="flex-grow-1">{{oitem.note}}</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </navigator>
+        <view class="flex-row">
+            <view class="flex-grow-1 flex-y-center flex-row dbbtn">
+                <view class="" wx:if="{{oitem.state==2&&status==1}}">
+                    <button bindtap="hxqh" class="ddbtn" data-id="{{oitem.id}}" data-sjid="{{oitem.store_id}}">核销取货</button>
+                </view>
+                <view class="" wx:if="{{oitem.state==2&&status==1}}">
+                    <button bindtap="txsj" class="ddbtn" data-tel="{{oitem.tel}}">联系商家</button>
+                </view>
+                <view class="" wx:if="{{status==3}}">
+                    <button bindtap="orderRevoke" class="ddbtn ddbtn3" data-id="{{oitem.id}}">删除 
+
+              </button>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="jzz" hidden="{{mygd}}">
+        <image class="Rotation" src="../../img/jzz.png"></image>
+        <view>加载中...</view>
+    </view>
+    <view class="jzwb" wx:if="{{mygd}}">
+        <view class="hx"></view>
+        <view class="wz">加载完毕</view>
+        <view class="hx"></view>
+    </view>
+</view>
+<view bindtap="hide" class="flex-row flex-y-center modal1 {{hide==1?'hide':''}}">
+    <view class="flex-y-center" style="width:100%;height:800rpx;padding:125rpx;">
+        <view style="background-color:#fff;width:100%;height:100%;border-radius:10rpx;padding:0 50rpx;">
+            <view class="flex-x-center" style="width:100%;height:50rpx;margin:20rpx 0;font-size:13pt;">核销二维码</view>
+            <image src="data:image/png;base64,{{hx_code}}" style="width:400rpx;height:400rpx;"></image>
+            <view class="flex-x-center" style="width:100%;height:50rpx;font-size:9pt;">出示给商家扫码核销</view>
+        </view>
+    </view>
+</view>

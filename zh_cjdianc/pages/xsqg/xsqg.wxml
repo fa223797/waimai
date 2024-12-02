@@ -1,0 +1,64 @@
+<view bindtap="mask1Cancel" class="mask {{mask1Hidden?'':'maskactive'}}">
+    <view class="maskbody">
+        <view class="navbarlist">
+            <view bindtap="selectednavbar" class="toatal_head  {{selectedindex==index?'selsect':'default'}}" data-index="{{index}}" id="a{{index}}" style="color:{{selectedindex==index?color:''}}" wx:for="{{navbar}}" wx:key="*this">{{item.name}}</view>
+            <view bindtap="onOverallTag" class="downpng1">
+                <image class="{{mask1Hidden?'sortimg':'sortimg1'}}" src="../../img/down1.png"></image>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="sjinfonav" wx:if="{{mask1Hidden&&store_id==null}}">
+    <scroll-view class="nav-two" scrollIntoView="{{toView}}" scrollX="true">
+        <view bindtap="selectednavbar" class="toatal_head  {{selectedindex==index?'selsect':'default'}}" data-index="{{index}}" id="a{{index}}" style="color:{{selectedindex==index?color:''}}" wx:for="{{navbar}}" wx:key="*this">
+      {{item.name}}
+      <view class="toatal_text" style="background-color: {{color}}" wx:if="{{selectedindex==index}}"></view>
+        </view>
+    </scroll-view>
+    <view bindtap="onOverallTag" class="downpng">
+        <image src="../../img/down1.png"></image>
+    </view>
+</view>
+<view class="no-data-tip zwdd" wx:if="{{order_list.length==0&&mygd}}">
+    <image mode="aspectFit" src="../../img/list.png"></image>
+    <view>暂无相关数据~</view>
+</view>
+<view class="{{store_id==null?'qgmain':''}}">
+    <navigator class="qgcell flex-row" url="xsqgxq?id={{oitem.id}}" wx:for="{{order_list}}" wx:for-item="oitem">
+        <view class="qgleft flex-grow-0 flex-y-center">
+            <view class="discount" style="background: {{color}}">{{oitem.discount}}折</view>
+            <image mode="aspectFit" src="{{oitem.logo}}"></image>
+        </view>
+        <view class="qgright flex-grow-1 flex-col">
+            <view class="name gobyndsingle">{{oitem.name}}</view>
+            <view class="address gobyndsingle">{{oitem.store_name}}</view>
+            <view class="flex-bet flex-y-center" style="color:{{color}}">
+                <view class="xlfs" style="border-color: {{color}}">限量{{oitem.number}}份</view>
+            </view>
+            <view class="flex-bet flex-y-center">
+                <view class="money" style="color:{{color}}">￥{{oitem.money}}
+            <text>￥{{oitem.price}}</text>
+                </view>
+                <view style="font-size:9pt;margin-right:30rpx;color:{{color}}">剩{{oitem.surplus}}份</view>
+            </view>
+            <view class="flex-bet flex-y-center">
+                <view class="bfb">
+                    <view class="qgtext">{{oitem.yqnum}}%</view>
+                    <view class="qgbfb1" style="border-color:{{color}}"></view>
+                    <view class="qgbfb2" style="width: {{oitem.yqnum}}%;background:{{color}};border-color:{{color}}" wx:if="{{oitem.yqnum!='0.0'}}"></view>
+                </view>
+                <view class="msq" style="background:{{color}}" wx:if="{{oitem.surplus>0}}">马上抢></view>
+                <view class="msq" style="background:#d5d5d5" wx:else>抢光了</view>
+            </view>
+        </view>
+    </navigator>
+    <view class="jzz" hidden="{{mygd}}">
+        <image class="Rotation" src="../../img/jzz.png"></image>
+        <view>加载中...</view>
+    </view>
+    <view class="jzwb" wx:if="{{mygd}}">
+        <view class="hx"></view>
+        <view class="wz">加载完毕</view>
+        <view class="hx"></view>
+    </view>
+</view>
