@@ -1,0 +1,268 @@
+<view class="container" style="background: linear-gradient(to bottom, rgb(47, 79, 79), rgb(0, 100, 0) 10%, rgb(0, 128, 0) 20%, rgb(0, 158, 96) 30%, rgb(0, 201, 147) 40%, rgb(152, 251, 152) 50%, rgb(203, 254, 203) 60%, rgb(229, 255, 229) 70%, rgb(255, 255, 255) 80%);">
+  <!-- 浮动图片层 -->
+  <view class="floating-image" wx:if="{{showFloatingImage}}">
+    <view class="gradient-background">
+      <view class="instructions">
+        <text class="instructions-title">舌诊检测操作指南</text>
+        <text class="instructions-content">
+1. 舌面照片：
+   - 伸出舌头，拍摄清晰的正面照片。
+   - 回答问题，点击"继续"。
+
+2. 面部照片：
+   - 拍摄面部照片。
+   - 回答问题，点击"继续"。
+
+3. 舌下照片：
+   - 卷起舌头，拍摄舌下照片。
+   - 回答问题，点击"继续"。
+
+4. 获取报告：
+   - 完成所有步骤后，系统生成报告。
+
+注意事项：
+- 确保光线充足，照片清晰。
+- 保持自然状态，避免夸张表情。
+- 报告仅供参考，如有不适，及时就医。
+        </text>
+      </view>
+    </view>
+    <button class="close-button" bindtap="closeFloatingImage">点击进行检测</button>
+  </view>
+
+  <!-- 步骤1：上传舌前照片 -->
+  <block wx:if="{{step == 1}}">
+    <view class="border-container">
+      <view class="camera-wrapper">
+        <!-- 相机组件，当用户授权相机权限时显示 -->
+        <camera 
+          wx:if="{{hasCameraAuth}}"
+          device-position="front"
+          flash="off"
+          binderror="cameraError"
+          style="width: 100%; height: 100%;"
+          id="camera"
+        ></camera>
+        <!-- 当用户未授权相机权限时显示的占位符 -->
+        <view wx:elif="{{!hasCameraAuth}}" class="camera-placeholder">
+          <text>请授权使用相机</text>
+        </view>
+      </view>
+      <view class="upload-container">
+        <text>请伸出舌头拍照</text>
+        <view class="button-container">
+          <button class="button" bindtap="chooseImage">相册</button>
+          <button class="button" bindtap="takePhoto">拍照</button>
+          <button class="button" bindtap="onQuestionsAnswered">继续</button>
+        </view>
+        <!-- 显示上传的舌前照片 -->
+        <image wx:if="{{tf_image_path}}" src="{{tf_image_path}}" style="width: 200px; height: auto;"></image>
+      </view>
+      <view class="inquiry-container">
+        <text>出现提问后请您向下滚动回答全部问题：</text>
+        <scroll-view style="height: 100%;" scroll-y="true">
+          <!-- 循环渲染问诊问题 -->
+          <block wx:for="{{inquiry_questions}}" wx:key="index">
+            <view class="question-box flex-row">
+              <view class="question-text">
+                <text>{{index + 1}}. {{item.name}}</text>
+              </view>
+              <view class="answer-options">
+                <radio-group name="{{item.name}}" bindchange="bindAnswerChange" data-name="{{item.name}}" class="radio-group">
+                  <label class="option-label">
+                    <radio value="是" class="radio" /> 是
+                  </label>
+                  <label class="option-label">
+                    <radio value="否" class="radio" /> 否
+                  </label>
+                </radio-group>
+              </view>
+            </view>
+          </block>
+        </scroll-view>
+      </view>
+    </view>
+  </block>
+
+  <!-- 步骤2：上传面照 -->
+  <block wx:if="{{step == 2}}">
+    <view class="border-container">
+      <view class="camera-wrapper">
+        <!-- 相机组件，当用户授权相机权限时显示 -->
+        <camera 
+          wx:if="{{hasCameraAuth}}"
+          device-position="front"
+          flash="off"
+          binderror="cameraError"
+          style="width: 100%; height: 100%;"
+          id="camera"
+        ></camera>
+        <!-- 当用户未授权相机权限时显示的占位符 -->
+        <view wx:elif="{{!hasCameraAuth}}" class="camera-placeholder">
+          <text>请授权使用相机</text>
+        </view>
+      </view>
+      <view class="upload-container">
+        <text>请上传您的面部照片</text>
+        <view class="button-container">
+          <button class="button" bindtap="chooseImage">相册</button>
+          <button class="button" bindtap="takePhoto">拍照</button>
+          <button class="button" bindtap="onQuestionsAnswered">继续</button>
+        </view>
+        <!-- 显示上传的面部照片 -->
+        <image wx:if="{{ff_image_path}}" src="{{ff_image_path}}" style="width: 200px; height: auto;"></image>
+      </view>
+      <view class="inquiry-container">
+        <text>出现提问后请您向下滚动回答全部问题：</text>
+        <scroll-view style="height: 100%;" scroll-y="true">
+          <!-- 循环渲染问诊问题 -->
+          <block wx:for="{{inquiry_questions}}" wx:key="index">
+            <view class="question-box flex-row">
+              <view class="question-text">
+                <text>{{index + 1}}. {{item.name}}</text>
+              </view>
+              <view class="answer-options">
+                <radio-group name="{{item.name}}" bindchange="bindAnswerChange" data-name="{{item.name}}" class="radio-group">
+                  <label class="option-label">
+                    <radio value="是" class="radio" /> 是
+                  </label>
+                  <label class="option-label">
+                    <radio value="否" class="radio" /> 否
+                  </label>
+                </radio-group>
+              </view>
+            </view>
+          </block>
+        </scroll-view>
+      </view>
+    </view>
+  </block>
+
+  <!-- 步骤3：上传舌下静脉照 -->
+  <block wx:if="{{step == 3}}">
+    <view class="border-container">
+      <view class="camera-wrapper">
+        <!-- 相机组件，当用户授权相机权限时显示 -->
+        <camera 
+          wx:if="{{hasCameraAuth}}"
+          device-position="front"
+          flash="off"
+          binderror="cameraError"
+          style="width: 100%; height: 100%;"
+          id="camera"
+        ></camera>
+        <!-- 当用户未授权相机权限时显示的占位符 -->
+        <view wx:elif="{{!hasCameraAuth}}" class="camera-placeholder">
+          <text>请授权使用相机</text>
+        </view>
+      </view>
+      <view class="upload-container">
+        <text>请卷舌拍摄舌下照片</text>
+        <view class="button-container">
+          <button class="button" bindtap="chooseImage">相册</button>
+          <button class="button" bindtap="takePhoto">拍照</button>
+          <button class="button" bindtap="onQuestionsAnswered">继续</button>
+        </view>
+        <!-- 显示上传的舌下静脉照片 -->
+        <image wx:if="{{tb_image_path}}" src="{{tb_image_path}}" style="width: 200px; height: auto;"></image>
+      </view>
+      <view class="inquiry-container">
+        <text>出现提问后请您向下滚动回答全部问题：</text>
+        <scroll-view style="height: 100%;" scroll-y="true">
+          <!-- 循环渲染问诊问题 -->
+          <block wx:for="{{inquiry_questions}}" wx:key="index">
+            <view class="question-box flex-row">
+              <view class="question-text">
+                <text>{{index + 1}}. {{item.name}}</text>
+              </view>
+              <view class="answer-options">
+                <radio-group name="{{item.name}}" bindchange="bindAnswerChange" data-name="{{item.name}}" class="radio-group">
+                  <label class="option-label">
+                    <radio value="是" class="radio" /> 是
+                  </label>
+                  <label class="option-label">
+                    <radio value="否" class="radio" /> 否
+                  </label>
+                </radio-group>
+              </view>
+            </view>
+          </block>
+        </scroll-view>
+      </view>
+    </view>
+  </block>
+
+  <!-- 步骤4：决定是否继续 -->
+  <block wx:if="{{step == 4}}">
+    <view class="step4-container">
+      <!-- 显示上传结果 -->
+      <view wx:if="{{responseData}}">
+        <text>上传结果：{{responseData}}</text>
+        <scroll-view style="max-height: 500px;" scroll-y="true">
+          <!-- 循环渲染问诊问题 -->
+          <block wx:for="{{inquiry_questions}}" wx:key="index">
+            <view class="question-box">
+              <text>{{index + 1}}. {{item.name}}</text>
+            </view>
+          </block>
+        </scroll-view>
+      </view>
+      <view class="button-container">
+        <view class="continue-prompt">
+          <text>继续填写症状</text>
+        </view>
+        <button data-option="yes" bindtap="decideContinue" class="continue-button">继续</button>
+        <button data-option="no" bindtap="decideContinue" class="exit-button">退出</button>
+      </view>
+    </view>
+  </block>
+  <!-- 步骤5：回答问题 -->
+  <block wx:if="{{step == 5}}">
+    <view class="step">
+      <text>请回答以下问题：</text>
+      <form bindsubmit="submitAnswers">
+        <view class="questions-container">
+          <!-- 循环渲染问诊问题 -->
+          <block wx:for="{{inquiry_questions}}" wx:key="index">
+            <view class="question-box">
+              <label class="question-label">{{item.name}}:</label>
+              <radio-group name="{{item.name}}" bindchange="bindAnswerChange" data-name="{{item.name}}" class="radio-group">
+                <label class="option-label">
+                  <radio value="是" /> 是
+                </label>
+                <label class="option-label">
+                  <radio value="否" /> 否
+                </label>
+              </radio-group>
+            </view>
+          </block>
+          <view class="footer">
+            <button formType="submit" class="submit-button">提交答案</button>
+          </view>
+        </view>
+      </form>
+    </view>
+  </block>
+
+  <!-- 步骤6：显示报告 -->
+  <block wx:if="{{step == 6}}">
+    <view class="step6">
+      <text>健康评估报告</text>
+      <scroll-view class="report-scroll" style="max-height: 600px;" scroll-y="true">
+        <view class="report-content">
+          <text class="report-item">评分: {{reportData.score}}</text>
+          <text class="report-item">体质名称: {{reportData.physique_name}}</text>
+          <text class="report-item">体质分析: {{reportData.physique_analysis}}</text>
+          <text class="report-item">典型症状: {{reportData.typical_symptom}}</text>
+          <text class="report-item">风险警告: {{reportData.risk_warning}}</text>
+          <text class="report-item">综合建议:</text>
+          <!-- 循环渲染食物建议 -->
+          <view wx:for="{{reportData.advices.food}}" wx:key="title">
+            <text class="report-item">{{item.title}}: {{item.advice}}</text>
+          </view>
+          <!-- 继续添加其他 advices 类型 -->
+        </view>
+      </scroll-view>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,16 @@
+<!-- pages/tongyi/tongyi.wxml -->
+<view class="container">
+  <scroll-view scroll-y="true" style="height: calc(80vh - {{keyboardHeight}}px);" scroll-into-view="{{scrollToId}}" scroll-with-animation="true" class="chat-box">
+    <block wx:for="{{chatHistory}}" wx:key="index">
+      <view class="chat-message" id="msg{{index}}" style="text-align: {{item.sender === 'user' ? 'right' : 'left'}};">
+        <text class="{{item.sender === 'user' ? 'user-text' : 'assistant-text'}}">{{item.content}}</text>
+      </view>
+    </block>
+  </scroll-view>
+
+  <!-- 输入区域固定在底部 -->
+  <view class="input-area" style="margin-bottom: {{keyboardHeight}}px;">
+    <input type="text" placeholder="请输入您的问题" value="{{inputContent}}" bindinput="onInputChange" bindfocus="onInputFocus" bindblur="onInputBlur" class="input-box"/>
+    <button bindtap="sendMessage" class="send-button">发送</button>
+  </view>
+</view>

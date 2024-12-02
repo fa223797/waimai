@@ -1,0 +1,16 @@
+/* ai.wxss */
+.container {
+  padding: 20rpx;
+}
+
+.amount-display {
+  font-size: 32rpx;
+  margin-bottom: 20rpx;
+}
+
+.pay-button {
+  background-color: #1AAD19;
+  color: #fff;
+  padding: 10rpx;
+  border-radius: 5rpx;
+}

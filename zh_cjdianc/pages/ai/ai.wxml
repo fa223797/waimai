@@ -1,0 +1,7 @@
+<!-- ai.wxml -->
+<view class="container">
+  <view class="amount-display">
+    <text>支付金额：0.01 元</text>
+  </view>
+  <button class="pay-button" bindtap="formSubmit">立即支付</button>
+</view>

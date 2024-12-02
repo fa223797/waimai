@@ -1,0 +1,70 @@
+/* pages/tongyi/tongyi.wxss */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+.chat-box {
+  width: 95%;                 /* 设置聊天框宽度为 90% */
+  height: 80vh;               /* 设置高度为屏幕的 4/5 */
+  padding: 10px;
+  overflow-y: auto;           /* 使用 auto 以避免初始显示滑动条 */
+  background-color: #cccccc;
+  box-sizing: border-box;      /* 包含内边距 */
+  border-radius: 8px;          /* 圆角边框 */
+  margin: 10px 0 10px 0;
+}
+
+.chat-message {
+  margin: 5px 0;
+}
+
+.user-text {
+  color: rgb(68, 0, 61);                  /* 用户消息红色 */
+  background-color: #ffeaff;   /* 用户消息背景色 */
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  max-width: 80%;              /* 设置最大宽度为80%，使消息内容适配 */
+}
+
+.assistant-text {
+  color: rgb(37, 0, 80);                 /* 回答消息蓝色 */
+  background-color: #ece7ff;   /* 回答消息背景色 */
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  max-width: 80%;              /* 设置最大宽度为80%，使消息内容适配 */
+}
+
+.input-area {
+  display: flex;
+  width: 100%;                  /* 设置输入区域宽度为 90% */
+  padding: 10px 0;
+  padding-left: 10px;          /* 输入区域整体左侧间距 */
+  padding-right: 10px;         /* 输入区域右侧间距 */
+  border-top: 1px solid #ccc;
+  background-color: #ffffff;
+}
+
+.input-box {
+  flex: 1;
+  border: 1px solid rgb(199, 230, 250);
+  padding: 0 8px;             /* 上下 padding 设置为 0，左右 padding 为 8px */
+  line-height: 40px;          /* 设置 line-height 与输入框高度一致 */
+  border-radius: 4px;
+  height: 40px;               /* 设置输入框高度为 40px */
+  margin-right: 10px;         /* 与发送按钮保持间距 */
+  box-sizing: border-box;
+}
+
+.send-button {
+  width: 80px;
+  height: 40px;                /* 设置发送按钮高度为 40px，与输入框一致 */
+  background-color: #7e1ba5;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+}

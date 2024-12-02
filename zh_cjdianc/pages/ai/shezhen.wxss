@@ -1,0 +1,376 @@
+/* 整体容器样式 */
+.container { 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* 整个容器的高度为视口高度 */
+  padding: 10px;
+  position: relative; /* 使浮动图片层的定位相对于这个容器 */
+}
+
+/* 浮动图片层样式 */
+.floating-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(206, 195, 195, 0.5); /* 半透明背景 */
+}
+
+/* 关闭按钮样式 */
+.close-button {
+  position: absolute;
+  background: linear-gradient(135deg, 
+    rgb(255, 255, 255,0.8), 
+    rgb(239, 252, 233,0.8), 
+    rgb(203, 252, 233,0.8)
+  ); /* 渐变背景，透明度40% */
+  color: rgb(0, 22, 7);
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  z-index: 1001; /* 确保按钮在图片之上 */
+}
+
+/* 描边容器样式 */
+.border-container { 
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  height: 100%;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 相机容器的样式 */
+.camera-wrapper { 
+  height: 60%; /* 高度为60% */
+  background: linear-gradient(135deg, 
+    rgba(198, 245, 88, 0.1), 
+    rgba(144, 255, 92, 0.1), 
+    rgba(36, 222, 255, 0.1), 
+    rgba(0, 183, 255, 0.1)
+  ); /* 渐变背景，透明度50% */
+  box-sizing: border-box; /* 包括边框和内边距在内 */
+  margin: 5px;/* 边距 */
+  border-radius: 10px;/* 圆角 */
+}
+
+/* 问诊问题容器的样式 */
+.inquiry-container { 
+  height: 35%; /* 高度为30% */
+  background-color: rgb(204, 250, 152,0.6);/* 背景颜色为半透明 */
+  overflow: hidden; /* 超出部分隐藏 */
+  padding: 10px;
+  box-sizing: border-box; /* 包括边框和内边距在内，确保整体容器的高度为 30% */
+  text-align: center; /* 文本水平居中 */
+  font-weight: bold; /* 字体加粗 */
+  font-size: 13px; /* 设置问诊问题内容的文字大小为15像素 */
+}
+
+
+
+/* 问题盒子样式 */
+.question-box {
+  display: flex;
+  flex-direction: row; /* 设置主轴方向为水平 */
+  align-items: center; /* 在交叉轴上居中对齐 */
+  justify-content: space-between; /* 使左右对齐 */
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #ccc;
+}
+
+/* 问题标签样式 */
+.question-label {
+  flex: 1;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: left;
+}
+
+/* 单选框组样式 */
+.radio-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+/* 选项标签样式 */
+.option-label {
+  margin-left: 10px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* 问题容器样式 */
+.questions-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* 页脚样式 */
+.footer {
+  margin-top: auto; /* 自动推到最底部 */
+  padding: 10px;
+  text-align: center;
+  background-color: rgb(204, 250, 152,0.1);
+}
+
+/* 提交按钮样式 */
+.submit-button {
+  width: 80%;/* 宽度为容器宽度的80% */
+
+  bottom: 20px; /* 底部与页面底部的间距为10px */
+  left: 5px; /* 左边与页面左侧的间距为10px */
+  right: 15px; /* 右边与页面右侧的间距为10px */
+
+  font-size: 20px;/* 字体大小 */
+  font-weight: bold;/* 字体加粗 */
+  background-color: rgb(1, 70, 70);/* 修改背景色为墨绿色 */
+  color: white;/* 文字颜色 */
+  border: none;/* 移除默认边框 */
+  border-radius: 15px;/* 圆角半径 */
+
+  margin-top: 20px;/* 上边距 */
+}
+
+/* 提交按钮悬停效果 */
+.submit-button:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+/* 上传和操作按钮容器的样式 */
+.upload-container { 
+  background-color: rgb(204, 250, 152,0.5);
+  height: 11%; /* 高度为10% */
+  display: flex;/* 使用Flexbox布局 */
+  flex-direction: column;/* 垂直排列 */
+  align-items: center;/* 居中对齐 */
+  justify-content: center;/* 居中对齐 */
+  font-weight: bold; /* 字体加粗 */
+  font-size: 15px; /* 字体大小为15px */
+}
+
+/* 按钮容器的样式 */
+.button-container { 
+  display: flex;/* 使用Flexbox布局 */
+  flex-direction: row;/* 水平排列 */
+  align-items: center;/* 居中对齐 */
+  justify-content: space-between;/* 左右对齐 */
+  width: 100%; /* 确保按钮容器占据全部宽度 */
+  color: white;/* 文字颜色为白色 */
+    font-weight: bold; /* 字体加粗 */
+}
+
+/* 按钮的样式 */
+.button { 
+  font-size: 15px; /* 设置按钮中文字的大小为15像素 */
+  padding: 3px 33px; /* 调整按钮的内边距以适应较小的文字 */
+  margin: 0 10px; /* 左右外边距30像素，使按钮之间有足够的间距 */
+  font-weight: bold; /* 字体加粗 */
+  background-color: rgb(36, 128, 128);/* 背景颜色为半透明 */
+  color: white;/* 文字颜色为白色 */
+  border: none;/* 移除默认边框 */
+  border-radius: 15px;/* 圆角半径为15像素 */
+  cursor: pointer;/* 更改鼠标指针为手形 */
+  transition: all 0.3s ease;/* 添加平滑过渡效果 */
+}
+
+/* 按钮悬停效果 */
+.button:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 悬停时添加阴影 */
+  transform: translateY(-2px); /* 悬停时稍微提升按钮 */
+}
+
+/* 摄像头样式 */
+.camera { 
+  width:90%; /* 宽度为容器的95% */
+  height: 90%; /* 高度为容器的95% */
+}
+
+/* 步骤容器样式 */
+.step {
+  padding: 20px;
+  color: rgb(1, 30, 12); /* 根据背景图片调整文字颜色，确保可读性 */
+  background: rgba(237, 237, 237, 0.3); 
+  border-radius: 10px; /* 添加圆角 */
+  width: 100%;
+  box-sizing: border-box;
+  font-weight: bold; /* 添加这一行来加粗字体 */
+}
+
+/* 继续提示样式 */
+.continue-prompt {
+  font-size: 15px; /* 字体大小为25像素 */
+  position: absolute; /* 绝对定位 */
+  top: 50%; /* 竖直方向居中 */
+  left: 0; right: 0; /* 水平方向居中 */
+  transform: translateY(-300%); /* 向上移动一半自身高度 */
+  font-size: 25px; /* 字体大小为25像素 */
+  margin-bottom: 10px; /* 与按钮之间的间距 */
+  text-align: center; /* 文本居中 */
+}
+
+/* 继续按钮和退出按钮样式 */
+.continue-button, .exit-button {
+  font-size: 20px; /* 设置按钮中文字大小为20像素 */
+  padding:8px 20px; /* 调整按钮的内边距以适应较小的文字 */
+  margin: 0 20px; /* 左右外边距20像素，使按钮之间有足够的间距 */
+  font-weight: bold; /* 字体加粗 */
+  border: none; /* 移除默认边框 */
+  cursor: pointer; /* 更改鼠标指针为手形 */
+  transition: all 0.3s ease; /* 添加平滑过渡效果 */
+  background: rgba(0, 52, 32, 0.5);
+  color: rgb(255, 255, 255);
+  border-radius: 10px; /* 添加圆角 */
+  height: 60px; /* 按钮高度 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 步骤6容器样式 */
+.step6 {
+  padding: 20px;
+  color: rgb(0, 12, 0); /* 文字颜色为黑色 */
+  background: rgba(237, 237, 237, 0.5);/* 背景颜色为半透明 */
+  border-radius: 10px;/* 圆角 */
+  width: 100%;/* 宽度为100% */
+  box-sizing: border-box;/* 包括边框和内边距在内 */
+  display: flex;/* 使用Flexbox布局 */
+  flex-direction: column;/* 垂直排列 */
+  align-items: center;/* 居中对齐 */
+  justify-content: center;/* 居中对齐 */
+  
+
+}
+
+/* 报告滚动容器样式 */
+.report-scroll {
+  width: 100%; /* 宽度为100% */
+  overflow-y: auto; /* 垂直滚动条 */
+  padding: 10px; /* 内边距 */
+  box-sizing: border-box;
+}
+
+/* 报告标题样式 */
+.report-title {
+  text-align: center; /* 文字居中 */
+  font-size: 18px; /* 可据需要调整标题的字体大小 */
+  margin-bottom: 10px; /* 与内容之间的间距 */
+}
+
+/* 报告内容样式 */
+.report-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* 内容左对齐 */
+  width: 100%;
+}
+
+/* 报告项样式 */
+.report-item {
+  margin-bottom: 10px; /* 每个内容项之间有一个空行 */
+  font-size: 15px; /* 字体大小 */
+  text-indent: 2em; /* 段落首行缩进两格 */
+  
+}
+
+/* 浮动图片样式 */
+.floating-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000; /* 确保浮动图片的 z-index 高于其他元素 */
+}
+
+/* 渐变背景样式 */
+.gradient-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, 
+    rgb(47, 79, 79), 
+    rgb(0, 100, 0) 10%,
+    rgb(0, 128, 0) 20%,
+    rgb(0, 158, 96) 30%,
+    rgb(0, 201, 147) 40%,
+    rgb(152, 251, 152) 50%, 
+    rgb(203, 254, 203) 60%,
+    rgb(229, 255, 229) 70%,
+    rgb(255, 255, 255) 80%
+  );
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.instructions {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+  margin-top: 20px; /* 添加上边距,使其不贴顶 */
+}
+
+.instructions-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: block;
+  
+}
+
+.instructions-content {
+  font-size: 16px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+
+.close-button {
+  background-color: rgb(41, 148, 148);
+  color: rgb(14, 28, 1);
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  z-index: 1001;
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.camera-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #666;
+  font-size: 16px;
+}
